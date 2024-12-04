@@ -1,5 +1,6 @@
 package com.example.assignment2;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,20 +8,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileView#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileView extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+    TextView username_tv, email_tv, password_tv, theme_tv, notification_tv;
+
     private String mParam1;
     private String mParam2;
 
@@ -28,15 +24,6 @@ public class ProfileView extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileView.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ProfileView newInstance(String param1, String param2) {
         ProfileView fragment = new ProfileView();
         Bundle args = new Bundle();
@@ -58,7 +45,34 @@ public class ProfileView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_view, container, false);
+        View view =  inflater.inflate(R.layout.fragment_profile_view, container, false);
+        username_tv = view.findViewById(R.id.username_tv);
+        email_tv = view.findViewById(R.id.email_tv);
+        password_tv = view.findViewById(R.id.password_tv);
+        theme_tv = view.findViewById(R.id.theme_tv);
+        notification_tv = view.findViewById(R.id.notification_tv);
+
+        SharedPreferences sharedPreferences = MainActivity.sharedPreferences;
+        SharedPreferences.Editor editor = MainActivity.editor;
+        String username = sharedPreferences.getString("username", "");
+        String email = sharedPreferences.getString("email", "");
+        String password = sharedPreferences.getString("password", "");
+        String theme = sharedPreferences.getString("theme", "false");
+        String notification = sharedPreferences.getString("notification", "false");
+
+        username_tv.setText(username);
+        email_tv.setText(email);
+        password_tv.setText(password);
+        if(theme.equals("false")) {
+            theme_tv.setText("Off");
+        } else {
+            theme_tv.setText("On");
+        }
+        if(notification.equals("false")) {
+            notification_tv.setText("Off");
+        } else {
+            notification_tv.setText("On");
+        }
+        return view;
     }
 }

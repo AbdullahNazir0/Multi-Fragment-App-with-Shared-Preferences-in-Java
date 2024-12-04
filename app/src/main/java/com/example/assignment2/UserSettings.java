@@ -18,12 +18,14 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.google.android.material.materialswitch.MaterialSwitch;
+
 public class UserSettings extends Fragment {
 
 
     EditText username_et, email_et, password_et;
-    Switch notification_sw, theme_sw;
-    Button save_bt;
+    MaterialSwitch notification_sw, theme_sw;
+    Button save_bt, reset_bt;
 
     LinearLayout usersettings_ll;
 
@@ -64,6 +66,7 @@ public class UserSettings extends Fragment {
         notification_sw = view.findViewById(R.id.notification_sw);
         theme_sw = view.findViewById(R.id.theme_sw);
         save_bt = view.findViewById(R.id.save_Bt);
+        reset_bt = view.findViewById(R.id.reset_bt);
 
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -79,7 +82,6 @@ public class UserSettings extends Fragment {
         password_et.setText(password);
         notification_sw.setChecked(notification.equals("true"));
         theme_sw.setChecked(theme.equals("true"));
-        usersettings_ll = view.findViewById(R.id.usersettings_ll);
 
         if(theme.equals("false")) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -97,11 +99,18 @@ public class UserSettings extends Fragment {
                 String notification = theme_sw.isChecked() + "";
 
                 if(theme.equals("false")) {
-                    usersettings_ll.setBackgroundColor(Color.WHITE);
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 } else {
-                    usersettings_ll.setBackgroundColor(Color.BLACK);
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+
+                if(username.length() < 2) {
+                    Toast.makeText(getContext(), "Username should be at least 2 characters", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(password.length() < 8) {
+                    Toast.makeText(getContext(), "Password should be atleast 8 characters long", Toast.LENGTH_LONG).show();
+                    return;
                 }
 
                 editor.putString("username", username);
@@ -112,6 +121,16 @@ public class UserSettings extends Fragment {
                 editor.apply();
 
                 Toast.makeText(getContext(), "Settings saved successfully", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        reset_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                editor.clear();
+                editor.clear();
+                editor.apply();
+                Toast.makeText(getContext(), "Settings reset successfully", Toast.LENGTH_LONG).show();
             }
         });
 

@@ -6,7 +6,6 @@
     tools:context=".UserSettings">
 
     <LinearLayout
-        android:id="@+id/usersettings_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -18,6 +17,7 @@
             android:textSize="40sp"
             android:textStyle="bold"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"/>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -69,23 +69,29 @@
                 android:inputType="textPassword"
                 android:hint="Password" />
         </LinearLayout>
-        <Switch
+        <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/theme_sw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dark mode: "
-            android:paddingBottom="20dp"/>
-        <Switch
+            android:text="Dark mode: "/>
+        <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/notification_sw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Allow notifications: "
-            android:paddingBottom="20dp"/>
+            android:text="Allow notifications: "/>
         <Button
             android:id="@+id/save_Bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save settings"
+            android:textSize="16sp"
+            android:layout_marginVertical="20dp"
+            android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/reset_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset settings?"
             android:textSize="16sp"
             android:layout_marginVertical="20dp"
             android:layout_gravity="center"/>
