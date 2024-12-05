@@ -96,7 +96,7 @@ public class UserSettings extends Fragment {
                 String email = email_et.getText() + "";
                 String password = password_et.getText() + "";
                 String theme = theme_sw.isChecked() + "";
-                String notification = theme_sw.isChecked() + "";
+                String notification = notification_sw.isChecked() + "";
 
                 if(theme.equals("false")) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -109,7 +109,7 @@ public class UserSettings extends Fragment {
                     return;
                 }
                 if(password.length() < 8) {
-                    Toast.makeText(getContext(), "Password should be atleast 8 characters long", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Password should be at least 8 characters long", Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -127,9 +127,17 @@ public class UserSettings extends Fragment {
         reset_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                editor.clear();
                 editor.clear();
                 editor.apply();
+
+                username_et.setText("");
+                email_et.setText("");
+                password_et.setText("");
+                theme_sw.setChecked(false);
+                notification_sw.setChecked(false);
+
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
                 Toast.makeText(getContext(), "Settings reset successfully", Toast.LENGTH_LONG).show();
             }
         });

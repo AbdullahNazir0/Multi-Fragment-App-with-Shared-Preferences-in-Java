@@ -31,22 +31,25 @@ public class MainActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         userProfile_bt = findViewById(R.id.userProfile_bt);
-        userSettings_bt = findViewById(R.id.userProfile_bt);
+        userSettings_bt = findViewById(R.id.userSettings_bt);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ProfileView.class, null)
-                .setReorderingAllowed(true)
-                .addToBackStack("name")
-                .commit();
+
+        if(savedInstanceState == null) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, new ProfileView())
+                    .setReorderingAllowed(true)
+                    .addToBackStack("name")
+                    .commit();
+        }
 
         userProfile_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, ProfileView.class, null)
+                        .replace(R.id.fragment_container, new ProfileView())
                         .setReorderingAllowed(true)
-                        .addToBackStack("name")
+                        .addToBackStack("ProfileView")
                         .commit();
             }
         });
@@ -55,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, UserSettings.class, null)
+                        .replace(R.id.fragment_container, new UserSettings())
                         .setReorderingAllowed(true)
-                        .addToBackStack("name")
+                        .addToBackStack("UserSettings")
                         .commit();
             }
         });

@@ -23,7 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp">
+            android:paddingBottom="10dp"
+            android:layout_marginTop="50dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,22 +80,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Allow notifications: "/>
-        <Button
-            android:id="@+id/save_Bt"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save settings"
-            android:textSize="16sp"
-            android:layout_marginVertical="20dp"
-            android:layout_gravity="center"/>
-        <Button
-            android:id="@+id/reset_bt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reset settings?"
-            android:textSize="16sp"
-            android:layout_marginVertical="20dp"
-            android:layout_gravity="center"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="50dp">
+            <Button
+                android:id="@+id/save_Bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save settings"
+                android:textSize="16sp"
+                android:layout_marginVertical="20dp"
+                android:layout_gravity="center"/>
+            <Button
+                android:id="@+id/reset_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset settings?"
+                android:textSize="16sp"
+                android:layout_marginVertical="20dp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>
